@@ -1,6 +1,7 @@
 import React from "react";
 
 const Card = () => {
+  /* Temporary data */
   const cards = [
     {
       title: "Admissions 24-25",

@@ -1,37 +1,41 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import VCsir from "../../assets/VCsir.jpg";
 import activity5 from "/src/assets/Activities/Activities5.jpeg";
 import activity6 from "/src/assets/Activities/Activities6.jpeg";
 import activity7 from "/src/assets/Activities/Activities7.jpeg";
 
+const carouselItems = [
+  {
+    id: 1,
+    title: "Celebrate this",
+    image: activity5,
+  },
+  {
+    id: 2,
+    title: "Celebrate this",
+    image: activity6,
+  },
+  {
+    id: 3,
+    title: "Celebrate this",
+    image: activity7,
+  },
+];
+
 const ViceChancellorMessage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const carouselItems = [
-    {
-      id: 1,
-      title: "Celebrate this",
-      image: activity5,
-    },
-    {
-      id: 2,
-      title: "Celebrate this",
-      image: activity6,
-    },
-    {
-      id: 3,
-      title: "Celebrate this",
-      image: activity7,
-    },
-  ];
-
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === carouselItems.length - 1 ? 0 : prev + 1));
+    setCurrentSlide((prev) =>
+      prev === carouselItems.length - 1 ? 0 : prev + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? carouselItems.length - 1 : prev - 1));
+    setCurrentSlide((prev) =>
+      prev === 0 ? carouselItems.length - 1 : prev - 1
+    );
   };
 
   return (
@@ -46,7 +50,6 @@ const ViceChancellorMessage = () => {
         </div>
 
         <div className="flex items-center gap-8">
-        
           <div className="w-40 h-40 bg-gray-200 flex-shrink-0 rounded-full overflow-hidden">
             <img
               src={VCsir}
@@ -55,7 +58,6 @@ const ViceChancellorMessage = () => {
             />
           </div>
 
-         
           <div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">
               Prof. Ashok Nagawat
@@ -95,7 +97,6 @@ const ViceChancellorMessage = () => {
         </p>
       </div>
 
-   
       <div className="relative mt-12">
         <div className="grid grid-cols-3 gap-6 mb-6">
           {carouselItems.map((item) => (
@@ -126,7 +127,6 @@ const ViceChancellorMessage = () => {
           <ChevronRight className="w-6 h-6 text-gray-600" />
         </button>
 
-        
         <div className="flex justify-center gap-2 mt-6">
           {carouselItems.map((_, index) => (
             <button

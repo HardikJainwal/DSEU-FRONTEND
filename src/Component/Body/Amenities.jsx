@@ -1,5 +1,3 @@
-import { ArrowBigRight, ArrowLeft } from "lucide-react";
-import React from "react";
 import Slider from "react-slick";
 
 const Amenities = () => {

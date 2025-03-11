@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import dseuPic1 from '../../assets/BannerImg/dseuPic1.jpg'
+import dseuPic1 from "../../assets/BannerImg/dseuPic1.jpg";
 
-import Image6 from '../../assets/6.jpg';
-import Image7 from '../../assets/7.png';
-
+import Image6 from "../../assets/6.jpg";
+import Image7 from "../../assets/7.png";
 
 const HomeBody = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const slides = [
-    { image: dseuPic1},
-    
-    { image: Image6 },
-    { image: Image7 },
-  ];
+  const slides = [{ image: dseuPic1 }, { image: Image6 }, { image: Image7 }];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -39,7 +33,7 @@ const HomeBody = () => {
           <div
             key={index}
             className={`absolute w-full h-full transition-transform duration-500 ease-in-out ${
-              index === currentIndex ? 'translate-x-0' : 'translate-x-full'
+              index === currentIndex ? "translate-x-0" : "translate-x-full"
             }`}
             style={{
               transform: `translateX(${100 * (index - currentIndex)}%)`,
@@ -49,7 +43,7 @@ const HomeBody = () => {
               src={slide.image}
               alt={`Slide ${index + 1}`}
               className="w-full h-full object-cover brightness-110 contrast-105"
-              loading={index === 0 ? 'eager' : 'lazy'}
+              loading={index === 0 ? "eager" : "lazy"}
             />
           </div>
         ))}
@@ -75,7 +69,7 @@ const HomeBody = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
-                currentIndex === index ? 'bg-white' : 'bg-white/50'
+                currentIndex === index ? "bg-white" : "bg-white/50"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

@@ -1,15 +1,7 @@
-import React, { useState } from "react";
-import {
-  Search,
-  Mail,
-  CheckCircle,
-  Users,
-  FileText,
-  Layout,
-  ExternalLink,
-} from "lucide-react";
+import { useState } from "react";
+import { Search, Mail, CheckCircle, FileText, Layout } from "lucide-react";
 import FacultyPP from "../../assets/FacultyPP.jpeg";
-import fluid from "../../assets/fluid.png";
+
 const FacultyDesc = () => {
   const facultyData = [
     {
@@ -404,7 +396,7 @@ const FacultyDesc = () => {
                   Group members will be displayed here...
                 </div>
               )}
-              <hr className="mt-3"/>
+              <hr className="mt-3" />
             </div>
             {/* Research Areas */}
             <div className=" ml-8">

@@ -1,53 +1,6 @@
-import React from "react";
-import img1 from "../../assets/MayurVihar.jpg";
-import img2 from "../../assets/VivekVihar.jpg";
-import img3 from "../../assets/shakarpur2.jpg";
+import { east as locations } from "../../constants/CAMPUSES.JS";
 
 const East = () => {
-  const locations = [
-    {
-      id: 1,
-      img: img1,
-      name: "DSEU Mayur Vihar Campus",
-      type: "Engineering College",
-      address: "Plot No. 12, Mayur Vihar Phase-1, Delhi-110091",
-      email: "admissions@mvic.edu.in",
-      phone: "+91-11-2278XXXX",
-      website: "www.mvic.edu.in",
-      courses: ["B.Tech", "M.Tech", "BCA", "MCA"],
-      facilities: ["Computer Labs", "Library", "Sports Complex", "Cafeteria"],
-    },
-    {
-      id: 2,
-      img: img2,
-      name: "DSEU Vivek Vihar Campus",
-      type: "Arts & Humanities College",
-      address: "Vivek Vihar Phase-2, Delhi-110095",
-      email: "info@vvca.edu.in",
-      phone: "+91-11-2356XXXX",
-      website: "www.vvca.edu.in",
-      courses: ["BA", "MA", "BFA", "MFA"],
-      facilities: ["Art Studios", "Auditorium", "Exhibition Hall", "Library"],
-    },
-    {
-      id: 3,
-      img: img3,
-      name: "Bhai Parmanand DSEU Campus",
-      type: "Management Institute",
-      address: "Main Road, Shakarpur, Delhi-110092",
-      email: "admissions@sbs.edu.in",
-      phone: "+91-11-2512XXXX",
-      website: "www.sbs.edu.in",
-      courses: ["BBA", "MBA", "B.Com", "M.Com"],
-      facilities: [
-        "Conference Hall",
-        "Digital Library",
-        "Computer Labs",
-        "Placement Cell",
-      ],
-    },
-  ];
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

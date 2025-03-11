@@ -1,18 +1,17 @@
-import React from "react";
-import bannerImage from "../../assets/BOG.png"; 
+import bannerImage from "../../assets/BOG.png";
+
+const gridItems = [
+  { title: "BOARD OF GOVERNORS", image: bannerImage },
+  { title: "BUILDING & WORKS COMMITTEE", image: bannerImage },
+  { title: "FINANCE COMMITTEE", image: bannerImage },
+  { title: "MEMBERSHIP OF SENATE", image: bannerImage },
+  { title: "ADMINISTRATION", image: bannerImage },
+  { title: "IoE", image: bannerImage },
+  { title: "MISSION & VISION", image: bannerImage },
+  { title: "ORGANIZATION CHART", image: bannerImage },
+];
 
 const AboutGrid = () => {
-  const gridItems = [
-    { title: "BOARD OF GOVERNORS", image: bannerImage },
-    { title: "BUILDING & WORKS COMMITTEE", image:bannerImage},
-    { title: "FINANCE COMMITTEE", image: bannerImage },
-    { title: "MEMBERSHIP OF SENATE", image: bannerImage },
-    { title: "ADMINISTRATION", image: bannerImage},
-    { title: "IoE", image: bannerImage },
-    { title: "MISSION & VISION", image: bannerImage},
-    { title: "ORGANIZATION CHART", image: bannerImage},
-  ];
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 pt-10">
       {gridItems.map((item, index) => (
@@ -22,7 +21,11 @@ const AboutGrid = () => {
           }`}
         >
           <div className="flex justify-center">
-            <img src={item.image} alt={item.title} className="w-12 h-12 mt-8 transform: scale-150" />
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-12 h-12 mt-8 transform: scale-150"
+            />
           </div>
           <p className="mt-6 text-xs uppercase">{item.title}</p>
         </div>

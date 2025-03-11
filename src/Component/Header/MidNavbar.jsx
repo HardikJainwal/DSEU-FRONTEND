@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Menu, ChevronDown, X } from "lucide-react";
@@ -7,6 +7,7 @@ import DSEULOGOTHICK from "../../assets/DSEULogo/DSEULOGOTHICK.svg";
 import DSEUTEXTFINAL from "../../assets/DSEULogo/DSEUTEXTFINAL.svg";
 import Group24 from "../../assets/DSEULogo/Group24.svg";
 import Orange from "../../assets/DSEULogo/Orange.svg";
+import TopBar from "./TopBar";
 
 const carouselImages = [
   {
@@ -23,8 +24,6 @@ const carouselImages = [
   },
 ];
 
-
-
 const navItems = [
   {
     name: "Home",
@@ -40,7 +39,7 @@ const navItems = [
       },
       { name: "Vision and Mission", path: "/about-us/Vision-and-Mission" },
       { name: "Policy", path: "/about-us/Policy" },
-      
+
       { name: "University Calendar", path: "/about-us/University-Calendar" },
       {
         name: "Annual Report",
@@ -57,9 +56,16 @@ const navItems = [
     dropdownItems: [
       { name: "Programs", path: "/academics/programs" },
       { name: "Departments", path: "/academics/departments" },
+      { name: "Director's Office", path: "/academics/directors-office" },
       { name: "Faculty", path: "/academics/faculty" },
-      { name: "Faculty Login", path:"https://dseu.samarth.ac.in/index.php/site/login"},
-      { name: "Student Login", path:"https://dseu.samarth.edu.in/index.php/site/login"}
+      {
+        name: "Faculty Login",
+        path: "https://dseu.samarth.ac.in/index.php/site/login",
+      },
+      {
+        name: "Student Login",
+        path: "https://dseu.samarth.edu.in/index.php/site/login",
+      },
     ],
   },
   {
@@ -83,11 +89,15 @@ const navItems = [
   {
     name: "Admission",
     dropdownItems: [
-      
-        {name: "UG Admission",path: "https://dseuadm.samarth.edu.in/ug/index.php/"},
-       { name: "PG Admission", path:"https://dseuadm.samarth.edu.in/pg/index.php"},
-       { name: "Diploma Admission", path:"https://dseuadm.samarth.edu.in/"},
-      
+      {
+        name: "UG Admission",
+        path: "https://dseuadm.samarth.edu.in/ug/index.php/",
+      },
+      {
+        name: "PG Admission",
+        path: "https://dseuadm.samarth.edu.in/pg/index.php",
+      },
+      { name: "Diploma Admission", path: "https://dseuadm.samarth.edu.in/" },
     ],
   },
   {
@@ -133,6 +143,7 @@ const navItems = [
   },
 ];
 
+/* For mobile view */
 const SidebarNav = ({ isOpen, onClose, navItems }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -300,10 +311,12 @@ const ResponsiveHeader = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
     <div className="w-full">
       {/* Desktop Header */}
+
+      <TopBar />
+      {/* Top 3 buttons */}
       <div className="hidden md:block bg-white py-4">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-6">

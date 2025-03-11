@@ -1,53 +1,12 @@
-import React, { useState } from "react";
-
-
-import achievement1 from "/src/assets/achievements/Achievements1.jpeg";
-import achievement2 from "/src/assets/achievements/Achievements2.jpeg";
-import achievement3 from "/src/assets/achievements/Achievements3.jpeg";
-import achievement4 from "/src/assets/achievements/Achievements4.jpeg";
-import achievement5 from "/src/assets/achievements/Achievements5.jpeg";
-import study  from "/src/assets/achievements/study.jpg";
-
-const programs = {
-  DIPLOMA: [
-    { code: "CSE", name: "Computer Science Engineering" },
-    { code: "ME", name: "Mechanical Engineering" },
-    { code: "ECE", name: "Electronics & Communication" },
-    { code: "Civil", name: "Civil Engineering" },
-    { code: "IT", name: "Information Technology" },
-    { code: "EEE", name: "Electrical & Electronics" },
-  ],
-  UNDERGRADUATE: [
-    { code: "IT", name: "Information Technology" },
-    { code: "Civil", name: "Civil Engineering" },
-    { code: "CSE", name: "Computer Science Engineering" },
-    { code: "ECE", name: "Electronics & Communication" },
-    { code: "ME", name: "Mechanical Engineering" },
-    { code: "EEE", name: "Electrical & Electronics" },
-  ],
-  "POST GRADUATE": [
-    { code: "ECE", name: "Electronics & Communication" },
-    { code: "Electrical", name: "Electrical Engineering" },
-    { code: "CSE", name: "Computer Science Engineering" },
-    { code: "IT", name: "Information Technology" },
-    { code: "ME", name: "Mechanical Engineering" },
-    { code: "Civil", name: "Civil Engineering" },
-  ],
-};
-
-const carouselItems = [
-  { image: achievement1 },
-  { image: achievement2 },
-  { image: achievement3 },
-  { image: achievement4 },
-  { image: achievement5 }
-];
+import { useEffect, useState } from "react";
+import study from "/src/assets/achievements/study.jpg";
+import { carouselItems, programs } from "../../constants/STUDENTPROGRAM";
 
 const StudyProgramsSection = () => {
   const [selectedProgram, setSelectedProgram] = useState("DIPLOMA");
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setCurrentCarouselIndex((prev) =>
         prev === carouselItems.length - 1 ? 0 : prev + 1
@@ -60,7 +19,6 @@ const StudyProgramsSection = () => {
     <div className="w-full bg-blue-50 p-8 mt-10">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
-          
           <div className="space-y-4">
             <h2 className="text-2xl font-bold text-gray-800 border-l-4 border-blue-600 pl-4">
               Recent Achievements
@@ -78,14 +36,12 @@ const StudyProgramsSection = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentCarouselIndex(index)}
-                    
                   />
                 ))}
               </div>
             </div>
           </div>
 
-         
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <h2 className="text-2xl font-bold text-gray-800 border-l-4 border-blue-600 pl-4">
@@ -118,25 +74,27 @@ const StudyProgramsSection = () => {
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-  {programs[selectedProgram].map((program) => (
-    <div
-      key={program.code}
-      className="relative bg-cover bg-center rounded-lg shadow-sm p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer h-28"
-      style={{
-        backgroundImage: `url(${study})`,
-      }}
-    >
-      <div className="absolute inset-0 bg-black opacity-50 rounded-lg " ></div>
+                {programs[selectedProgram].map((program) => (
+                  <div
+                    key={program.code}
+                    className="relative bg-cover bg-center rounded-lg shadow-sm p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer h-28"
+                    style={{
+                      backgroundImage: `url(${study})`,
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black opacity-50 rounded-lg "></div>
 
-      <div className="relative z-10 h-full flex flex-col justify-center items-center ">
-        <h3 className="text-lg font-bold text-white text-center">{program.code}</h3>
-        <p className="text-xs text-white text-center">{program.name}</p>
-      </div>
-    </div>
-  ))}
-</div>
-
-
+                    <div className="relative z-10 h-full flex flex-col justify-center items-center ">
+                      <h3 className="text-lg font-bold text-white text-center">
+                        {program.code}
+                      </h3>
+                      <p className="text-xs text-white text-center">
+                        {program.name}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

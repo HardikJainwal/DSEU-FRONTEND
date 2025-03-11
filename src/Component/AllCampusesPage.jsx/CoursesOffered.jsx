@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { X } from "lucide-react";
+import { courseData } from "../../constants/COURSEDATA.JS";
 
 const CourseDetailsCard = ({ program, onClose }) => {
   const navigate = useNavigate();
@@ -15,8 +16,12 @@ const CourseDetailsCard = ({ program, onClose }) => {
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-2xl w-full">
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h1 className="text-blue-900 text-2xl font-bold mb-1">{program.title}</h1>
-          <p className="text-blue-900 text-lg">Program Code {program.code || "N/A"}</p>
+          <h1 className="text-blue-900 text-2xl font-bold mb-1">
+            {program.title}
+          </h1>
+          <p className="text-blue-900 text-lg">
+            Program Code {program.code || "N/A"}
+          </p>
         </div>
         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
           <X size={24} />
@@ -56,7 +61,9 @@ const CourseDetailsCard = ({ program, onClose }) => {
           </div>
 
           <div>
-            <h2 className="text-black text-lg font-medium mb-2">Program Fee (Rs. in Lacs)</h2>
+            <h2 className="text-black text-lg font-medium mb-2">
+              Program Fee (Rs. in Lacs)
+            </h2>
             <p className="text-sm">1st Year Non Sponsored Semester Fee:</p>
             <p>{program.fee}</p>
           </div>
@@ -82,258 +89,6 @@ const CoursesOffered = () => {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const location = useLocation(); // Get current route
 
-  // Define course data based on page URL
-  const courseData = {
-    "/BPIBS": [
-      {
-        title: "MBA International Business Management",
-        code: "PG001",
-        campus: "Central Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "Bachelor's degree in relevant field with 60% aggregate",
-        duration: "2 Years",
-        fee: "2.5 Lacs per year",
-      },
-      {
-        title: "MBA Data Analytics",
-        code: "PG002",
-        campus: "Central Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "Bachelor's degree in relevant field with 60% aggregate",
-        duration: "2 Years",
-        fee: "2.5 Lacs per year",
-      },
-      {
-        title: "MBA International Business Management",
-        code: "PG001",
-        campus: "Central Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "Bachelor's degree in relevant field with 60% aggregate",
-        duration: "2 Years",
-        fee: "2.5 Lacs per year",
-      },
-      {
-        title: "MBA Data Analytics",
-        code: "PG002",
-        campus: "Central Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "Bachelor's degree in relevant field with 60% aggregate",
-        duration: "2 Years",
-        fee: "2.5 Lacs per year",
-      },
-      {
-        title: "MBA International Business Management",
-        code: "PG001",
-        campus: "Central Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "Bachelor's degree in relevant field with 60% aggregate",
-        duration: "2 Years",
-        fee: "2.5 Lacs per year",
-      },
-      {
-        title: "MBA Data Analytics",
-        code: "PG002",
-        campus: "Central Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "Bachelor's degree in relevant field with 60% aggregate",
-        duration: "2 Years",
-        fee: "2.5 Lacs per year",
-      },
-    ],
-    "/vivekvihar": [
-      {
-        title: "B.Tech Computer Science",
-        code: "UG001",
-        campus: "Main Campus",
-        institute: "DSEU School of Engineering",
-        university: "DSEU University",
-        eligibility: "12th with PCM, minimum 60%",
-        duration: "4 Years",
-        fee: "1.5 Lacs per year",
-      },
-      {
-        title: "BBA Marketing",
-        code: "UG002",
-        campus: "South Campus",
-        institute: "DSEU School of Management",
-        university: "DSEU University",
-        eligibility: "12th with minimum 50%",
-        duration: "3 Years",
-        fee: "1.2 Lacs per year",
-      },
-      {
-        title: "B.Tech Computer Science",
-        code: "UG001",
-        campus: "Main Campus",
-        institute: "DSEU School of Engineering",
-        university: "DSEU University",
-        eligibility: "12th with PCM, minimum 60%",
-        duration: "4 Years",
-        fee: "1.5 Lacs per year",
-      },
-      {
-        title: "BBA Marketing",
-        code: "UG002",
-        campus: "South Campus",
-        institute: "DSEU School of Management",
-        university: "DSEU University",
-        eligibility: "12th with minimum 50%",
-        duration: "3 Years",
-        fee: "1.2 Lacs per year",
-      },
-      {
-        title: "B.Tech Computer Science",
-        code: "UG001",
-        campus: "Main Campus",
-        institute: "DSEU School of Engineering",
-        university: "DSEU University",
-        eligibility: "12th with PCM, minimum 60%",
-        duration: "4 Years",
-        fee: "1.5 Lacs per year",
-      },
-      {
-        title: "BBA Marketing",
-        code: "UG002",
-        campus: "South Campus",
-        institute: "DSEU School of Management",
-        university: "DSEU University",
-        eligibility: "12th with minimum 50%",
-        duration: "3 Years",
-        fee: "1.2 Lacs per year",
-      },
-    ],
-    "/Mayurvihar": [
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-    ],
-    "/shakarpur2": [
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-      {
-        title: "Diploma in Cyber Security",
-        code: "D001",
-        campus: "West Campus",
-        institute: "DSEU Graduate School of Technology",
-        university: "DSEU University",
-        eligibility: "10th pass with minimum 50%",
-        duration: "2 Years",
-        fee: "1.0 Lacs per year",
-      },
-    ],
-  };
-
   const programs = courseData[location.pathname] || [];
 
   return (
@@ -356,7 +111,9 @@ const CoursesOffered = () => {
               className="border-l-4 border-yellow-500 bg-white p-4 shadow-md rounded-md cursor-pointer hover:shadow-lg hover:scale-105 hover:bg-blue-50 transition-all duration-300"
               onClick={() => setSelectedProgram(program)}
             >
-              <p className="text-lg font-semibold text-gray-800">{program.title}</p>
+              <p className="text-lg font-semibold text-gray-800">
+                {program.title}
+              </p>
             </div>
           ))}
         </div>

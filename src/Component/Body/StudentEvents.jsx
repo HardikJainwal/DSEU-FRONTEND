@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import activity1 from "/src/assets/Activities/Activities1.jpeg";
 import activity2 from "/src/assets/Activities/Activities2.jpeg";
@@ -7,9 +9,6 @@ import activity4 from "/src/assets/Activities/Activities4.jpeg";
 import activity5 from "/src/assets/Activities/Activities5.jpeg";
 import activity6 from "/src/assets/Activities/Activities6.jpeg";
 import activity7 from "/src/assets/Activities/Activities7.jpeg";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const EventsAndActivities = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -63,9 +62,7 @@ const EventsAndActivities = () => {
               <button
                 key={index}
                 className="relative overflow-hidden rounded-lg group h-[190px]"
-                onClick={() =>
-                  window.open("https://youtube.com", "_blank")
-                } // Redirect to YouTube
+                onClick={() => window.open("https://youtube.com", "_blank")} // Redirect to YouTube
               >
                 <img
                   src={img}

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
-import { code } from "framer-motion/client";
 
 const CourseDetailsCard = ({ program, onClose }) => {
   const navigate = useNavigate();
@@ -16,7 +15,9 @@ const CourseDetailsCard = ({ program, onClose }) => {
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-2xl w-full">
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h1 className="text-blue-900 text-2xl font-bold mb-1">{program.title}</h1>
+          <h1 className="text-blue-900 text-2xl font-bold mb-1">
+            {program.title}
+          </h1>
           <p className="text-blue-900 text-lg">Program Code {program.code}</p>
         </div>
         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
@@ -83,39 +84,41 @@ const CertificateCourses = () => {
 
   const programs = [
     {
-        title:"Certificate Course in Food Production",
-        code:"",
+      title: "Certificate Course in Food Production",
+      code: "",
     },
     {
-        title:"Certificate Course in Retail Services ",
-        code:"",
+      title: "Certificate Course in Retail Services ",
+      code: "",
     },
     {
-        title:"Certificate Course in Computer System Operator",
-        code:"",
+      title: "Certificate Course in Computer System Operator",
+      code: "",
     },
     {
-        title:" Certificate course in Digital Marketing and Web development ",
-        code:"",
+      title: " Certificate course in Digital Marketing and Web development ",
+      code: "",
     },
     {
-        title:"Certificate course in refrigeration and Air conditioning Skills",
-        code:"",
+      title: "Certificate course in refrigeration and Air conditioning Skills",
+      code: "",
     },
     {
-        title:"Certificate course in Welding Technology",
-        code:"",
+      title: "Certificate course in Welding Technology",
+      code: "",
     },
     {
-        title:"Certificate course in Mechatronics skill ",
-        code:"",
+      title: "Certificate course in Mechatronics skill ",
+      code: "",
     },
   ];
 
   return (
     <div className="bg-gray-100 min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-blue-900 mb-4">Certificate Courses</h1>
+        <h1 className="text-3xl font-bold text-blue-900 mb-4">
+          Certificate Courses
+        </h1>
 
         <div className="space-y-4">
           {programs.map((program, index) => (
@@ -124,7 +127,9 @@ const CertificateCourses = () => {
               className="border-l-4 border-yellow-500 bg-white p-4 shadow-md rounded-md cursor-pointer hover:shadow-lg hover:scale-105 hover:bg-blue-50 transition-all duration-300"
               onClick={() => setSelectedProgram(program)}
             >
-              <p className="text-lg font-semibold text-gray-800">{program.title}</p>
+              <p className="text-lg font-semibold text-gray-800">
+                {program.title}
+              </p>
             </div>
           ))}
         </div>

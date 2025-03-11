@@ -1,18 +1,17 @@
-import React from "react";
 import { ExternalLink } from "lucide-react";
 
-const AnnouncementStrip = () => {
-  const announcements = [
-    {
-      text: "Click here for e-Library Software (for DSEU Faculty Members)",
-      link: "#",
-    },
-    {
-      text: "UGC Guidelines on Anti-Ragging",
-      link: "#",
-    },
-  ];
+const announcements = [
+  {
+    text: "Click here for e-Library Software (for DSEU Faculty Members)",
+    link: "#",
+  },
+  {
+    text: "UGC Guidelines on Anti-Ragging",
+    link: "#",
+  },
+];
 
+const AnnouncementStrip = () => {
   return (
     <div className="flex bg-white border-y border-gray-200">
       <div className="bg-blue-600 text-white flex w-28 lg:w-auto items-center px-5">

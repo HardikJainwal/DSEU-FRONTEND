@@ -3,26 +3,26 @@ import { ArrowRight } from "lucide-react";
 import DG from "../../assets/DG.jpg";
 import VCsir from "../../assets/VCsir.jpg";
 
-const Message = () => {
-  const leaders = [
-    {
-      title: "Hon'ble Chancellor's Desk",
-      name: "Shri Vinay Kumar Saxena",
-      image: DG,
-      message:
-        "Make DSEU a nationally competitive university known for its accomplishments and contributions to society, by creating a community of learners that celebrates diversity, promotes excellence, and makes a transformative impact on society and in the technology-driven world.",
-      link: "https://lg.delhi.gov.in/",
-    },
-    {
-      title: "Vice Chancellor's Desk",
-      name: "Prof Ashok Kumar Nagawat",
-      image: VCsir,
-      message:
-        "Making DSEU a nationally competitive university known for its accomplishments and contributions to society, by creating a community of learners that celebrates diversity, promotes excellence, and makes a transformative impact on society and in the technology-driven world.",
-      link: "/vice-chancellor",
-    },
-  ];
+const leaders = [
+  {
+    title: "Hon'ble Chancellor's Desk",
+    name: "Shri Vinay Kumar Saxena",
+    image: DG,
+    message:
+      "Make DSEU a nationally competitive university known for its accomplishments and contributions to society, by creating a community of learners that celebrates diversity, promotes excellence, and makes a transformative impact on society and in the technology-driven world.",
+    link: "https://lg.delhi.gov.in/",
+  },
+  {
+    title: "Vice Chancellor's Desk",
+    name: "Prof Ashok Kumar Nagawat",
+    image: VCsir,
+    message:
+      "Making DSEU a nationally competitive university known for its accomplishments and contributions to society, by creating a community of learners that celebrates diversity, promotes excellence, and makes a transformative impact on society and in the technology-driven world.",
+    link: "/vice-chancellor",
+  },
+];
 
+const Message = () => {
   return (
     <div className="w-full bg-blue-600 bg-opacity-30 font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
