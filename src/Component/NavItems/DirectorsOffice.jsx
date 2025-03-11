@@ -1,7 +1,6 @@
 import { useState } from "react";
 import imgPlaceholder from "../../assets/FacultyPP.jpeg";
 
-const x=1;
 // Temp placeholder data
 const items = [
   {
@@ -48,7 +47,7 @@ const DirectorsOffice = () => {
           <div
             key={item.id}
             onClick={() => handleClick(item.id)}
-            className={`lg:p-6 p-2 md:text-xl text-sm sm:text-lg text-center rounded-xl md:rounded-2xl cursor-pointer font-semibold whitespace-nowrap transition-all leading-tight ${
+            className={`lg:p-6 p-2 md:text-xl text-xs sm:text-lg text-center rounded-xl md:rounded-2xl cursor-pointer font-semibold whitespace-nowrap transition-all leading-tight ${
               selectedId === item.id
                 ? "border-2 border-orange-500 shadow-sm md:shadow-orange-400 bg-orange-500 text-white"
                 : "bg-[#D9D9D926] hover:bg-orange-400 hover:text-white transition"
@@ -66,14 +65,14 @@ const DirectorsOffice = () => {
           <div className="w-full flex items-center justify-center lg:block">
             <div
               className="bg-[#003E70] text-white p-4 max-w-[300px] font-bold
-         rounded-lg text-center md:mt-10 mt-6 text-xl md:text-2xl"
+         rounded-lg text-center md:mt-10 mt-6 text-lg md:text-2xl"
             >
               Introduction
             </div>
           </div>
 
           <div>
-            <p className="mt-2 md:text-lg text-md">{dataToDisplay.info}</p>
+            <p className="mt-2 md:text-lg text-sm">{dataToDisplay.info}</p>
           </div>
         </div>
       </div>
@@ -81,7 +80,7 @@ const DirectorsOffice = () => {
       <div className="w-full flex items-center justify-center">
         <div
           className="bg-[#003E70] text-white p-4 max-w-[300px] font-bold 
-        text-xl md:text-2xl rounded-lg text-center md:mt-10 mt-6"
+        text-lg md:text-2xl rounded-lg text-center md:mt-10 mt-6"
         >
           Academic Affairs
         </div>
@@ -92,7 +91,7 @@ const DirectorsOffice = () => {
           {academicAffairs.map((item, index) => (
             <div
               key={index}
-              className="w-full sm:w-48 h-fit p-4 md:w-48 lg:w-52 md:h-36 flex items-center justify-center md:text-xl lg:text-xl text-lg font-bold text-center rounded-3xl cursor-pointer transition-all border-2 border-[#D9D9D94D] shadow-sm bg-[#D9D9D926]"
+              className="w-full sm:w-48 h-fit p-4 md:w-48 lg:w-52 md:h-36 flex items-center justify-center md:text-xl lg:text-xl text-md sm:text-lg font-bold text-center rounded-3xl cursor-pointer transition-all border-2 border-[#D9D9D94D] shadow-sm bg-[#D9D9D926]"
             >
               {item}
             </div>
