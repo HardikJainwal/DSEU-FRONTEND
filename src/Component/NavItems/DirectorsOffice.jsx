@@ -1,4 +1,5 @@
 import { useState } from "react";
+import imgPlaceholder from '../../assets/FacultyPP.jpeg'
 
 // Temp placeholder data
 const items = [
@@ -48,20 +49,32 @@ const DirectorsOffice = () => {
         ))}
       </div>
 
-      <div className="w-full flex items-center justify-center md:block">
-        <div className="bg-[#003E70] text-white p-4 max-w-[300px] font-bold
-         rounded-lg text-center md:mt-10 mt-6 text-xl md:text-2xl">
-          Introduction
+      <div className="flex flex-col items-center justify-center gap-20 lg:flex-row">
+        <img
+          src={imgPlaceholder}
+        />
+
+        <div className="flex flex-col gap-4">
+          <div className="w-full flex items-center justify-center lg:block">
+            <div
+              className="bg-[#003E70] text-white p-4 max-w-[300px] font-bold
+         rounded-lg text-center md:mt-10 mt-6 text-xl md:text-2xl"
+            >
+              Introduction
+            </div>
+          </div>
+
+          <div>
+            <p className="mt-2 md:text-lg text-md">{dataToDisplay.info}</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <p className="mt-2 md:text-lg text-md">{dataToDisplay.info}</p>
-      </div>
-
       <div className="w-full flex items-center justify-center">
-        <div className="bg-[#003E70] text-white p-4 max-w-[300px] font-bold 
-        text-xl md:text-2xl rounded-lg text-center md:mt-10 mt-6">
+        <div
+          className="bg-[#003E70] text-white p-4 max-w-[300px] font-bold 
+        text-xl md:text-2xl rounded-lg text-center md:mt-10 mt-6"
+        >
           Academic Affairs
         </div>
       </div>

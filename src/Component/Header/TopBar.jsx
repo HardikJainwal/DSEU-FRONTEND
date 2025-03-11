@@ -12,24 +12,24 @@ const TopBar = () => {
     <div className="flex flex-row justify-center md:justify-end my-4 md:mr-16 items-center">
       <Link
         to="#"
-        className="border-orange-500 border-l-2 px-4 hover:underline hover:text-[#1b1b1b]"
+        className="border-orange-500 border-l-2 px-1 md:px-4 hover:underline hover:text-[#1b1b1b] whitespace-nowrap"
       >
         Student Form
       </Link>
 
       <Link
         to="#"
-        className="border-orange-500 border-l-2 px-4 hover:underline hover:text-[#1b1b1b]"
+        className="border-orange-500 border-l-2 px-2 md:px-4 hover:underline hover:text-[#1b1b1b] whitespace-nowrap"
       >
         Faculty Form
       </Link>
 
       <div
-        className="relative group border-orange-500 border-l-2 border-r-2 px-4 hover:underline hover:text-[#1b1b1b] cursor-pointer"
+        className="relative group border-orange-500 border-l-2 border-r-2 px-1 md:px-4 hover:underline hover:text-[#1b1b1b] cursor-pointer whitespace-nowrap"
         onMouseEnter={() => setOpenDropdown(true)}
         onMouseLeave={() => setOpenDropdown(false)}
       >
-        <div className="flex items-center">
+        <div className="flex items-center whitespace-nowrap">
           Faculty Login
           <ChevronDown className=" ml-2 w-4 h-4" />
         </div>
