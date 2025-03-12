@@ -41,8 +41,7 @@ const TopBar = () => {
               <div className="absolute inset-1 border-2 border-orange-500 rounded-md pointer-events-none"></div>
               <Link
                 to="#"
-                className="block px-4 py-2 text-xs md:text-sm text-gray-800 hover:bg-orange-100 text-center relative
-                "
+                className="block px-4 py-2 text-xs md:text-xs text-gray-800 hover:bg-orange-100 text-center relative"
               >
                 DSEU
               </Link>
