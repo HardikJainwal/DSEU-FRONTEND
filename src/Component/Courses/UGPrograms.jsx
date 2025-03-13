@@ -80,7 +80,7 @@ const UGPrograms = () => {
   const [selectedProgram, setSelectedProgram] = useState(null);
 
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
+    <div className="bg-gray-100 min-h-screen p-6 md:pb-16 md:pt-10 pt-12 pb-10">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-blue-900 mb-4">UG Programs</h1>
 

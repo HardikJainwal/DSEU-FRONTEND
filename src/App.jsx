@@ -1,150 +1,147 @@
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import MidNavbar from "./Component/Header/MidNavbar";
 import Footer from "./Component/Footer/Footer";
+import "./App.css";
 
-import HomeBody from "./Component/Body/Banner";
-import OurCampuses from "./Component/Body/OurCampuses";
-import Message from "./Component/Body/Message";
-import Announcements from "./Component/Body/Announcements";
-import Card from "./Component/Body/Card";
-import News from "./Component/Body/News";
-import OurPartners from "./Component/Body/OurPartners";
-import ViceChancellorMessage from "./Component/Body/ViceChancellorMessage";
-import StudyProgramsSection from "./Component/Body/StudentProgram";
-import EventsAndActivities from "./Component/Body/StudentEvents";
-import Administration from "./Component/Body/Administration";
-import DepartmentPage from "./Component/Body/DepartmentPage";
-import ListOfFaculties from "./Component/Body/ListOfFaculties";
-import FacultyDesc from "./Component/Body/FacultyDesc";
-import ResearchDev from "./Component/Body/ResearchDev";
-
-// courses
-import UGPrograms from "./Component/Courses/UGPrograms";
-import PGPrograms from "./Component/Courses/PGProgram";
-import DiplomaPrograms from "./Component/Courses/Diploma";
-import CertificateCourses from "./Component/Courses/CertificateCourses";
-import CourseStructure from "./Component/Courses/CourseStructure";
-
-// policies
-import Policy from "./Component/Policy/Policy";
-import AcademicGuidelines from "./Component/Policy/AcademicGuidelines";
-import AdmissionsPolicy from "./Component/Policy/AdmissionsPolicy";
-import AntiRaggingPolicy from "./Component/Policy/AntiRaggingPolicy";
-import CodeOfConduct from "./Component/Policy/CodeOfConduct";
-import Facilities from "./Component/Policy/Facilities";
-import SupportServices from "./Component/Policy/SupportServices";
+// Lazy Load Components
+const HomeBody = lazy(() => import("./Component/Body/Banner"));
+const Announcements = lazy(() => import("./Component/Body/Announcements"));
+const Message = lazy(() => import("./Component/Body/Message"));
+const Card = lazy(() => import("./Component/Body/Card"));
+const OurCampuses = lazy(() => import("./Component/Body/OurCampuses"));
+const OurPartners = lazy(() => import("./Component/Body/OurPartners"));
+const News = lazy(() => import("./Component/Body/News"));
+const EventsAndActivities = lazy(() => import("./Component/Body/StudentEvents"));
 
 // Campuses
-import North from "./Component/Campuses/North";
-import South from "./Component/Campuses/South";
-import East from "./Component/Campuses/East";
-import West from "./Component/Campuses/West";
+const North = lazy(() => import("./Component/Campuses/North"));
+const South = lazy(() => import("./Component/Campuses/South"));
+const East = lazy(() => import("./Component/Campuses/East"));
+const West = lazy(() => import("./Component/Campuses/West"));
+const Central = lazy(() => import("./Component/Campuses/Central"));
 
-import BPIBS from "./Component/AllCampusesPage.jsx/BPIBS";
-import MayurVihar from "./Component/AllCampusesPage.jsx/MayurVihar";
-import ShakarpurDSEU from "./Component/AllCampusesPage.jsx/Shakarpur";
-import VivekVihar from "./Component/AllCampusesPage.jsx/VivekVihar";
+// Courses
+const CoursesPage = lazy(() => import("./Component/Courses/CoursesPage"));
+const UGPrograms = lazy(() => import("./Component/Courses/UGPrograms"));
+const PGPrograms = lazy(() => import("./Component/Courses/PGProgram"));
+const DiplomaPrograms = lazy(() => import("./Component/Courses/Diploma"));
+const CertificateCourses = lazy(() => import("./Component/Courses/CertificateCourses"));
+const CourseStructure = lazy(() => import("./Component/Courses/CourseStructure"));
 
-import About from "./Component/NavItems/About";
-import VissionMission from "./Component/NavItems/Vission&Mission";
-import Entrepreneurship from "./Component/NavItems/Entrepreneurship";
-import Amenities from "./Component/NavItems/Amenities";
-import Placement from "./Component/NavItems/Placement";
-import DirectorsOffice from "./Component/NavItems/DirectorsOffice";
-import JobPortal from "./Component/Body/JobPortal";
-import AlumniSection from "./Component/Alumni Page/AlumniSection";
+// Academic & Faculty
+const ListOfFaculties = lazy(() => import("./Component/Body/ListOfFaculties"));
+const DepartmentPage = lazy(() => import("./Component/Body/DepartmentPage"));
+const FacultyDesc = lazy(() => import("./Component/Body/FacultyDesc"));
+const Administration = lazy(() => import("./Component/Body/Administration"));
 
-import "./App.css";
+// Policies
+const Policy = lazy(() => import("./Component/Policy/Policy"));
+const AcademicGuidelines = lazy(() => import("./Component/Policy/AcademicGuidelines"));
+const AdmissionsPolicy = lazy(() => import("./Component/Policy/AdmissionsPolicy"));
+const AntiRaggingPolicy = lazy(() => import("./Component/Policy/AntiRaggingPolicy"));
+const CodeOfConduct = lazy(() => import("./Component/Policy/CodeOfConduct"));
+const Facilities = lazy(() => import("./Component/Policy/Facilities"));
+const SupportServices = lazy(() => import("./Component/Policy/SupportServices"));
+
+// Other Sections
+const About = lazy(() => import("./Component/NavItems/About"));
+const VissionMission = lazy(() => import("./Component/NavItems/Vission&Mission"));
+const Entrepreneurship = lazy(() => import("./Component/NavItems/Entrepreneurship"));
+const Amenities = lazy(() => import("./Component/NavItems/Amenities"));
+const ViceChancellorMessage = lazy(() => import("./Component/Body/ViceChancellorMessage"));
+const ResearchDev = lazy(() => import("./Component/Body/ResearchDev"));
+const AlumniSection = lazy(() => import("./Component/Alumni Page/AlumniSection"));
+const JobPortal = lazy(() => import("./Component/Body/JobPortal"));
+const Placement = lazy(() => import("./Component/NavItems/Placement"));
+
+// Campuses Page
+const BPIBS = lazy(() => import("./Component/AllCampusesPage.jsx/BPIBS"));
+const MayurVihar = lazy(() => import("./Component/AllCampusesPage.jsx/MayurVihar"));
+const ShakarpurDSEU = lazy(() => import("./Component/AllCampusesPage.jsx/Shakarpur"));
+const VivekVihar = lazy(() => import("./Component/AllCampusesPage.jsx/VivekVihar"));
+
+
 
 function App() {
   return (
     <BrowserRouter>
-      <MidNavbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <HomeBody />
-              <Announcements />
-              <Message />
-              <Card />
-              <StudyProgramsSection />
-              <OurCampuses />
-              <OurPartners />
-              <News />
-              <EventsAndActivities />
-            </>
-          }
-        />
-        <Route path="/campus/north" element={<North />} />
-        <Route path="/campus/south" element={<South />} />
-        <Route path="/campus/east" element={<East />} />
-        <Route path="/campus/west" element={<West />} />
-        <Route path="/courses/ug" element={<UGPrograms />} />
-        <Route path="/courses/pg" element={<PGPrograms />} />
-        <Route
-          path="/courses/Certificate-Courses"
-          element={<CertificateCourses />}
-        />
-        <Route path="/courses/diploma" element={<DiplomaPrograms />} />
-        <Route path="/courses/diploma" element={<UGPrograms />} />
-        <Route path="/academics/faculty" element={<ListOfFaculties />} />
-        <Route
-          path="/academics/directors-office"
-          element={<DirectorsOffice />}
-        />
-        <Route path="/dept/:departmentPath" element={<DepartmentPage />} />
-        <Route
-          path="/course-structure/:programCode"
-          element={<CourseStructure />}
-        />
-        <Route
-          path="/Administration/administrative"
-          element={<Administration />}
-        />
-        <Route path="/faculty/:facultyId" element={<FacultyDesc />} />
-        <Route path="/alumni" element={<AlumniSection />} />
-        <Route path="/administration/recruitment" element={<JobPortal />} />
-        <Route path="/about-us/About-the-College" element={<About />} />
-        <Route
-          path="about-us/Vision-and-Mission"
-          element={<VissionMission />}
-        />
-        <Route path="about-us/Policy" element={<Policy />} />
-        <Route
-          path="about-us/policy/academic-policy"
-          element={<AcademicGuidelines />}
-        />
-        <Route
-          path="about-us/policy/anti-ragging-policy"
-          element={<AntiRaggingPolicy />}
-        />
-        <Route
-          path="about-us/policy/admission-policy"
-          element={<AdmissionsPolicy />}
-        />
-        <Route path="about-us/policy/facilities" element={<Facilities />} />
-        <Route
-          path="about-us/policy/support-services"
-          element={<SupportServices />}
-        />
-        <Route
-          path="about-us/policy/code-of-conduct"
-          element={<CodeOfConduct />}
-        />
-        <Route path="/vice-chancellor" element={<ViceChancellorMessage />} />
-        <Route path="/entrepreneurship" element={<Entrepreneurship />} />
-        <Route path="/amenities/Facilities" element={<Amenities />} />
-        <Route path="/research/*" element={<ResearchDev />} />
-        <Route path="/BPIBS" element={<BPIBS />} />
-        <Route path="/MayurVihar" element={<MayurVihar />} />
-        <Route path="/shakarpur2" element={<ShakarpurDSEU />} />
-        <Route path="/vivekvihar" element={<VivekVihar />} />
-        <Route path="/Placement" element={<Placement />} />
-      </Routes>
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MidNavbar />
+        <Routes>
+          {/* Home Route */}
+          <Route
+            path="/"
+            element={
+              <>
+                <HomeBody />
+                <Announcements />
+                <Message />
+                <Card />
+                <OurCampuses />
+                <OurPartners />
+                <News />
+                <EventsAndActivities />
+                
+              </>
+            }
+          />
+
+          {/* Campuses */}
+          <Route path="/campus/central" element={<Central />} />
+          <Route path="/campus/north" element={<North />} />
+          <Route path="/campus/south" element={<South />} />
+          <Route path="/campus/east" element={<East />} />
+          <Route path="/campus/west" element={<West />} />
+
+          {/* Courses */}
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/courses/ug" element={<UGPrograms />} />
+          <Route path="/courses/pg" element={<PGPrograms />} />
+          <Route path="/courses/diploma" element={<DiplomaPrograms />} />
+          <Route path="/courses/certificate-courses" element={<CertificateCourses />} />
+          <Route path="/course-structure/:programCode" element={<CourseStructure />} />
+
+          {/* Academics & Faculty */}
+          <Route path="/academics/faculty" element={<ListOfFaculties />} />
+          <Route path="/faculty/:facultyId" element={<FacultyDesc />} />
+          <Route path="/dept/:departmentPath" element={<DepartmentPage />} />
+          <Route path="/Administration/administrative" element={<Administration />} />
+
+          {/* Policies */}
+          <Route path="/about-us/Policy" element={<Policy />} />
+          {[
+            { path: "academic-policy", component: AcademicGuidelines },
+            { path: "admission-policy", component: AdmissionsPolicy },
+            { path: "anti-ragging-policy", component: AntiRaggingPolicy },
+            { path: "facilities", component: Facilities },
+            { path: "support-services", component: SupportServices },
+            { path: "code-of-conduct", component: CodeOfConduct },
+          ].map(({ path, component }) => (
+            <Route key={path} path={`/about-us/policy/${path}`} element={React.createElement(component)} />
+          ))}
+
+          {/* Other Pages */}
+          <Route path="/vice-chancellor" element={<ViceChancellorMessage />} />
+          <Route path="/research/*" element={<ResearchDev />} />
+          <Route path="/about-us/About-the-University" element={<About />} />
+          <Route path="/about-us/Vision-and-Mission" element={<VissionMission />} />
+          <Route path="/entrepreneurship" element={<Entrepreneurship />} />
+          <Route path="/amenities/Facilities" element={<Amenities />} />
+          <Route path="/administration/recruitment" element={<JobPortal />} />
+          <Route path="/Placement" element={<Placement />} />
+
+          {/* Alumni */}
+          <Route path="/alumni" element={<AlumniSection />} />
+
+          {/* Campus Pages */}
+          <Route path="/BPIBS" element={<BPIBS />} />
+          <Route path="/MayurVihar" element={<MayurVihar />} />
+          <Route path="/shakarpur2" element={<ShakarpurDSEU />} />
+          <Route path="/vivekvihar" element={<VivekVihar />} />
+        </Routes>
+        <Footer />
+      </Suspense>
     </BrowserRouter>
   );
 }

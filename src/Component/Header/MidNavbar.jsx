@@ -46,16 +46,16 @@ const navItems = [
         ],
       },
       { name: "Handbook (Brochure)", path: "/about-us/Handbook" },
+      // change to -> information bulletin 
     ],
-  },
+},
   {
     name: "Academics",
     dropdownItems: [
       { name: "Programs", path: "/academics/programs" },
-      { name: "Departments", path: "/academics/departments" },
+      { name: "Departments", path: "/dept/arabics" },
       { name: "Faculty", path: "/academics/faculty" },
       {name: "Director's Office", path: "/academics/directors-office"},
-      { name: "Faculty Login", path: "https://dseu.samarth.ac.in/index.php/site/login" },
       { name: "Student Login", path: "https://dseu.samarth.edu.in/index.php/site/login" },
       { name: "Courses", path: "/Courses"},
     ],
@@ -63,6 +63,7 @@ const navItems = [
   {
     name: "Campuses",
     dropdownItems: [
+      { name: "Central", path: "/campus/central" },
       { name: "North", path: "/campus/north" },
       { name: "South", path: "/campus/south" },
       { name: "East", path: "/campus/east" },
@@ -533,7 +534,7 @@ const ResponsiveHeader = () => {
             >
               <Link
                 to={item.path || "#"}
-                className="group inline-flex items-center text-base font-medium text-[#005CB9] hover:text-blue-800 whitespace-nowrap relative px-2 py-1"
+                className="group inline-flex items-center text-base font-medium text-[#005CB9] hover:text-blue-800 whitespace-nowrap relative lg:px-1 py-1"
               >
                 {item.name}
                 {item.dropdownItems && (
@@ -647,11 +648,16 @@ const ResponsiveHeader = () => {
           </div>
         ))}
       </div>
+
+      <SearchModal
+         isOpen={isSearchOpen}
+         onClose={() => setIsSearchOpen(false)}
+       />
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsSearchOpen(true)}
-        className="text-[#005CB9] hover:text-blue-900 p-3 rounded-full hover:bg-blue-100 transition-colors duration-300"
+        className="text-[#005CB9] hover:text-blue-900 rounded-full hover:bg-blue-100 transition-colors duration-300 lg:pl-10"
       >
         <Search className="h-5 w-5" />
       </motion.button>
