@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Menu, ChevronDown, X } from "lucide-react";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import TopBar from './TopBar';
+import TopBar from "./TopBar";
 import DSEULOGOTHICK from "../../assets/DSEULogo/DSEULOGOTHICK.svg";
 import DSEUTEXTFINAL from "../../assets/DSEULogo/DSEUTEXTFINAL.svg";
 import Group24 from "../../assets/DSEULogo/Group24.svg";
 import Orange from "../../assets/DSEULogo/Orange.svg";
+import SearchModal from "./SearchModal";
 
 // Existing carousel images and navItems arrays remain unchanged
 const carouselImages = [
@@ -36,7 +37,8 @@ const navItems = [
     dropdownItems: [
       { name: "About the University", path: "/about-us/About-the-University" },
       { name: "Vision and Mission", path: "/about-us/Vision-and-Mission" },
-      { name: "Policy", path: "/about-us/Policy" },
+      // { name: "Policy", path: "/about-us/Policy" },
+      //? removed, as mentioned in the minutes of meeting pdf
       { name: "University Calendar", path: "/about-us/University-Calendar" },
       {
         name: "Annual Report",
@@ -45,19 +47,23 @@ const navItems = [
           { name: "Year-wise", path: "/about-us/Annual-Report/Year-wise" },
         ],
       },
-      { name: "Handbook (Brochure)", path: "/about-us/Handbook" },
-      // change to -> information bulletin 
+      // { name: "Handbook (Brochure)", path: "/about-us/Handbook" },
+      { name: "Information Bulletin", path: "#information-bulletin" },
+      // change from, handbook -> information bulletin
     ],
-},
+  },
   {
     name: "Academics",
     dropdownItems: [
       { name: "Programs", path: "/academics/programs" },
       { name: "Departments", path: "/dept/arabics" },
       { name: "Faculty", path: "/academics/faculty" },
-      {name: "Director's Office", path: "/academics/directors-office"},
-      { name: "Student Login", path: "https://dseu.samarth.edu.in/index.php/site/login" },
-      { name: "Courses", path: "/Courses"},
+      { name: "Director's Office", path: "/academics/directors-office" },
+      {
+        name: "Student Login",
+        path: "https://dseu.samarth.edu.in/index.php/site/login",
+      },
+      { name: "Courses", path: "/Courses" },
     ],
   },
   {
@@ -73,8 +79,14 @@ const navItems = [
   {
     name: "Admission",
     dropdownItems: [
-      { name: "UG Admission", path: "https://dseuadm.samarth.edu.in/ug/index.php/" },
-      { name: "PG Admission", path: "https://dseuadm.samarth.edu.in/pg/index.php" },
+      {
+        name: "UG Admission",
+        path: "https://dseuadm.samarth.edu.in/ug/index.php/",
+      },
+      {
+        name: "PG Admission",
+        path: "https://dseuadm.samarth.edu.in/pg/index.php",
+      },
       { name: "Diploma Admission", path: "https://dseuadm.samarth.edu.in/" },
     ],
   },
@@ -83,7 +95,10 @@ const navItems = [
     dropdownItems: [
       { name: "Administrative", path: "/administration/administrative" },
       { name: "Recruitment", path: "/administration/recruitment" },
-      { name: "Other Academic Units", path: "/administration/Other-Academic-Units" },
+      {
+        name: "Other Academic Units",
+        path: "/administration/Other-Academic-Units",
+      },
       { name: "Support Services", path: "/administration/Support-Services" },
     ],
   },
@@ -118,7 +133,7 @@ const navItems = [
   },
 ];
 
-
+//? for mobile view
 const SidebarNav = ({ isOpen, onClose, navItems }) => {
   // Sidebar component code remains unchanged
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -220,7 +235,9 @@ const SidebarNav = ({ isOpen, onClose, navItems }) => {
                                     onClose();
                                   } else {
                                     setOpenNestedDropdown(
-                                      openNestedDropdown === subItem.name ? null : subItem.name
+                                      openNestedDropdown === subItem.name
+                                        ? null
+                                        : subItem.name
                                     );
                                   }
                                 }}
@@ -229,36 +246,42 @@ const SidebarNav = ({ isOpen, onClose, navItems }) => {
                                   <Link
                                     to={subItem.path}
                                     className="flex-grow"
-                                    onClick={() => !subItem.dropdownItems && onClose()}
+                                    onClick={() =>
+                                      !subItem.dropdownItems && onClose()
+                                    }
                                   >
                                     {subItem.name}
                                   </Link>
                                 ) : (
-                                  <span className="flex-grow">{subItem.name}</span>
+                                  <span className="flex-grow">
+                                    {subItem.name}
+                                  </span>
                                 )}
                                 {subItem.dropdownItems && (
                                   <ChevronDown
                                     className={`w-4 h-4 ml-2 transition-transform duration-200 ${
-                                      openNestedDropdown === subItem.name ? "rotate-180" : ""
+                                      openNestedDropdown === subItem.name
+                                        ? "rotate-180"
+                                        : ""
                                     }`}
                                   />
                                 )}
                               </div>
-                              {subItem.dropdownItems && openNestedDropdown === subItem.name && (
-                                <div className="pl-4 py-1 space-y-1">
-                                  {subItem.dropdownItems.map((nestedItem) => (
-                                    <Link
-                                      key={nestedItem.name}
-                                      to={nestedItem.path}
-                            
-                                      className="block py-2 px-3 text-gray-500 hover:bg-blue-50 rounded-lg text-xs"
-                                      onClick={onClose}
-                                    >
-                                      {nestedItem.name}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
+                              {subItem.dropdownItems &&
+                                openNestedDropdown === subItem.name && (
+                                  <div className="pl-4 py-1 space-y-1">
+                                    {subItem.dropdownItems.map((nestedItem) => (
+                                      <Link
+                                        key={nestedItem.name}
+                                        to={nestedItem.path}
+                                        className="block py-2 px-3 text-gray-500 hover:bg-blue-50 rounded-lg text-xs"
+                                        onClick={onClose}
+                                      >
+                                        {nestedItem.name}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                )}
                             </div>
                           ))}
                         </div>
@@ -275,50 +298,27 @@ const SidebarNav = ({ isOpen, onClose, navItems }) => {
   );
 };
 
-const SearchModal = ({ isOpen, onClose }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50">
-      <div
-        className="absolute inset-0 bg-white/80 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      <div className="relative w-full max-w-4xl mx-auto mt-20">
-        <div className="bg-white rounded-2xl shadow-2xl">
-          <div className="flex items-center p-4 border-b">
-            <Search className="w-6 h-6 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search for anything..."
-              className="flex-1 px-4 py-2 text-lg focus:outline-none"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              autoFocus
-            />
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-full"
-            >
-              <X className="w-6 h-6 text-gray-500" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
+//? desktop view
 const ResponsiveHeader = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openNestedDropdown, setOpenNestedDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [isSticky, setIsSticky] = useState(true);
+
+  // takes to the # according to the hash in the url.
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -353,30 +353,30 @@ const ResponsiveHeader = () => {
   // Dropdown animation variants
   const dropdownVariants = {
     hidden: { opacity: 0, y: -5, height: 0 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       height: "auto",
-      transition: { 
+      transition: {
         duration: 0.2,
-        staggerChildren: 0.05
-      }
+        staggerChildren: 0.05,
+      },
     },
-    exit: { 
-      opacity: 0, 
-      y: -5, 
+    exit: {
+      opacity: 0,
+      y: -5,
       height: 0,
-      transition: { duration: 0.15 } 
-    }
+      transition: { duration: 0.15 },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -10 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
-      transition: { duration: 0.2 }
-    }
+      transition: { duration: 0.2 },
+    },
   };
 
   return (
@@ -514,157 +514,185 @@ const ResponsiveHeader = () => {
           navItems={navItems}
         />
       </div>
-      
+
       {/* Enhanced Desktop Navigation Bar */}
 
-<div className="hidden md:block bg-gradient-to-r from-blue-50 to-blue-100 shadow-lg shadow-blue-500/30 rounded-3xl w-[96%] mx-auto my-4 sticky top-0 z-50">
-  <nav className="max-w-7xl px-4 mx-auto">
-    <div className="flex justify-between items-center h-16">
-      <div className="flex items-center space-x-7">
-        {navItems.map((item) => (
-          <div
-            key={item.name}
-            className="relative group"
-            onMouseEnter={() => handleItemHover(item.name)}
-            onMouseLeave={() => handleItemHover(null)}
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              <Link
-                to={item.path || "#"}
-                className="group inline-flex items-center text-base font-medium text-[#005CB9] hover:text-blue-800 whitespace-nowrap relative lg:px-1 py-1"
-              >
-                {item.name}
-                {item.dropdownItems && (
-                  <ChevronDown className={`ml-0.5 h-3 w-3 transition-transform duration-300 ${
-                    openDropdown === item.name ? "rotate-180" : ""
-                  }`} />
-                )}
-                
-                {/* Animated underline effect */}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
-              </Link>
-            </motion.div>
-            
-            {/* Enhanced Dropdown Menu */}
-            <AnimatePresence>
-              {item.dropdownItems && openDropdown === item.name && (
-                <motion.div
-                  variants={dropdownVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white rounded-lg shadow-xl min-w-[240px] z-50 overflow-hidden backdrop-blur-sm bg-white/90"
+      <div className="hidden md:block bg-gradient-to-r from-blue-50 to-blue-100 shadow-lg shadow-blue-500/30 rounded-3xl w-[96%] mx-auto my-4 sticky top-0 z-50">
+        <nav className="max-w-7xl px-4 mx-auto">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-7">
+              {navItems.map((item) => (
+                <div
+                  key={item.name}
+                  className="relative group"
+                  onMouseEnter={() => handleItemHover(item.name)}
+                  onMouseLeave={() => handleItemHover(null)}
                 >
-                  {/* Fancy Header */}
-                  <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-t-lg relative overflow-hidden">
-                    <div className="absolute inset-0 bg-blue-600 opacity-20">
-                      <div className="w-full h-full" style={{
-                        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                        backgroundSize: '15px 15px'
-                      }}></div>
-                    </div>
-                    <h3 className="text-center font-semibold relative z-10">{item.name}</h3>
-                  </div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <Link
+                      to={item.path || "#"}
+                      className="group inline-flex items-center text-base font-medium text-[#005CB9] hover:text-blue-800 whitespace-nowrap relative lg:px-1 py-1"
+                    >
+                      {item.name}
+                      {item.dropdownItems && (
+                        <ChevronDown
+                          className={`ml-0.5 h-3 w-3 transition-transform duration-300 ${
+                            openDropdown === item.name ? "rotate-180" : ""
+                          }`}
+                        />
+                      )}
 
-                  {/* Dropdown items with hover effects */}
-                  <div className="p-2">
-                    {item.dropdownItems.map((subItem, idx) => (
-                      <motion.div 
-                        key={subItem.name}
-                        variants={itemVariants}
-                        className="relative group/item"
-                        onMouseEnter={() => handleNestedHover(subItem.name)}
-                        onMouseLeave={() => subItem.dropdownItems ? null : handleNestedHover(null)}
+                      {/* Animated underline effect */}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
+                    </Link>
+                  </motion.div>
+
+                  {/* Enhanced Dropdown Menu */}
+                  <AnimatePresence>
+                    {item.dropdownItems && openDropdown === item.name && (
+                      <motion.div
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white rounded-lg shadow-xl min-w-[240px] z-50 overflow-hidden backdrop-blur-sm bg-white/90"
                       >
-                        <Link
-                          to={subItem.path || "#"}
-                          className="block px-4 py-3 my-1 text-gray-700 hover:text-blue-700 rounded-md transition-all duration-200 hover:bg-blue-50 relative overflow-hidden group-hover/item:pl-6"
-                        >
-                          {/* Left side hover indicator */}
-                          <span className="absolute left-0 top-0 h-full w-1 bg-blue-500 transform -translate-x-full group-hover/item:translate-x-0 transition-transform duration-200"></span>
-                          
-                          <span className="flex items-center justify-between">
-                            <span>{subItem.name}</span>
-                            {subItem.dropdownItems && (
-                              <ChevronDown className={`inline-block ml-2 h-4 w-4 transition-transform duration-300 ${
-                                openNestedDropdown === subItem.name ? "rotate-180" : "rotate-270"
-                              }`} />
-                            )}
-                          </span>
-                        </Link>
-                        
-                        {/* FIXED: Enhanced Nested Dropdown - this is the part with the issue */}
-                        <AnimatePresence>
-                          {subItem.dropdownItems && openNestedDropdown === subItem.name && (
-                            <motion.div
-                              initial={{ opacity: 0, x: 20, width: 0 }}
-                              animate={{ opacity: 1, x: 0, width: "auto" }}
-                              exit={{ opacity: 0, x: 20, width: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="absolute left-full top-0 mt-0 bg-white/95 backdrop-blur-sm shadow-lg rounded-lg min-w-[220px] overflow-hidden"
-                              style={{ 
-                                boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
-                                // Fix for positioning - ensure the dropdown is visible
-                                transform: "translateX(0)",
-                                left: "100%", // Position to the right of the parent
-                                zIndex: 60 // Higher z-index than the parent dropdown
+                        {/* Fancy Header */}
+                        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-t-lg relative overflow-hidden">
+                          <div className="absolute inset-0 bg-blue-600 opacity-20">
+                            <div
+                              className="w-full h-full"
+                              style={{
+                                backgroundImage:
+                                  "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
+                                backgroundSize: "15px 15px",
                               }}
-                            >
-                              {/* Nested Header with gradient */}
-                              <div className="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-2 rounded-t-lg">
-                                <h4 className="text-center font-medium text-sm">{subItem.name}</h4>
-                              </div>
-                              
-                              {/* Nested Items with hover effects */}
-                              <div className="p-2">
-                                {subItem.dropdownItems.map((nestedItem, idx) => (
-                                  <motion.div
-                                    key={nestedItem.name}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: idx * 0.05 }}
-                                  >
-                                    <Link
-                                      to={nestedItem.path}
-                                      className="block px-4 py-2 text-gray-700 hover:text-blue-600 rounded-md hover:bg-blue-50 transition-all duration-200 my-1 border-l-2 border-transparent hover:border-blue-400"
-                                    >
-                                      {nestedItem.name}
-                                    </Link>
-                                  </motion.div>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
-      </div>
+                            ></div>
+                          </div>
+                          <h3 className="text-center font-semibold relative z-10">
+                            {item.name}
+                          </h3>
+                        </div>
 
-      <SearchModal
-         isOpen={isSearchOpen}
-         onClose={() => setIsSearchOpen(false)}
-       />
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsSearchOpen(true)}
-        className="text-[#005CB9] hover:text-blue-900 rounded-full hover:bg-blue-100 transition-colors duration-300 lg:pl-10"
-      >
-        <Search className="h-5 w-5" />
-      </motion.button>
+                        {/* Dropdown items with hover effects */}
+                        <div className="p-2">
+                          {item.dropdownItems.map((subItem, idx) => (
+                            <motion.div
+                              key={subItem.name}
+                              variants={itemVariants}
+                              className="relative group/item"
+                              onMouseEnter={() =>
+                                handleNestedHover(subItem.name)
+                              }
+                              onMouseLeave={() =>
+                                subItem.dropdownItems
+                                  ? null
+                                  : handleNestedHover(null)
+                              }
+                            >
+                              <Link
+                                to={subItem.path || "#"}
+                                className="block px-4 py-3 my-1 text-gray-700 hover:text-blue-700 rounded-md transition-all duration-200 hover:bg-blue-50 relative overflow-hidden group-hover/item:pl-6"
+                              >
+                                {/* Left side hover indicator */}
+                                <span className="absolute left-0 top-0 h-full w-1 bg-blue-500 transform -translate-x-full group-hover/item:translate-x-0 transition-transform duration-200"></span>
+
+                                <span className="flex items-center justify-between">
+                                  <span>{subItem.name}</span>
+                                  {subItem.dropdownItems && (
+                                    <ChevronDown
+                                      className={`inline-block ml-2 h-4 w-4 transition-transform duration-300 ${
+                                        openNestedDropdown === subItem.name
+                                          ? "rotate-180"
+                                          : "rotate-270"
+                                      }`}
+                                    />
+                                  )}
+                                </span>
+                              </Link>
+
+                              {/* FIXED: Enhanced Nested Dropdown - this is the part with the issue */}
+                              <AnimatePresence>
+                                {subItem.dropdownItems &&
+                                  openNestedDropdown === subItem.name && (
+                                    <motion.div
+                                      initial={{ opacity: 0, x: 20, width: 0 }}
+                                      animate={{
+                                        opacity: 1,
+                                        x: 0,
+                                        width: "auto",
+                                      }}
+                                      exit={{ opacity: 0, x: 20, width: 0 }}
+                                      transition={{ duration: 0.2 }}
+                                      className="absolute left-full top-0 mt-0 bg-white/95 backdrop-blur-sm shadow-lg rounded-lg min-w-[220px] overflow-hidden"
+                                      style={{
+                                        boxShadow:
+                                          "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
+                                        // Fix for positioning - ensure the dropdown is visible
+                                        transform: "translateX(0)",
+                                        left: "100%", // Position to the right of the parent
+                                        zIndex: 60, // Higher z-index than the parent dropdown
+                                      }}
+                                    >
+                                      {/* Nested Header with gradient */}
+                                      <div className="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-2 rounded-t-lg">
+                                        <h4 className="text-center font-medium text-sm">
+                                          {subItem.name}
+                                        </h4>
+                                      </div>
+
+                                      {/* Nested Items with hover effects */}
+                                      <div className="p-2">
+                                        {subItem.dropdownItems.map(
+                                          (nestedItem, idx) => (
+                                            <motion.div
+                                              key={nestedItem.name}
+                                              initial={{ opacity: 0, y: 10 }}
+                                              animate={{ opacity: 1, y: 0 }}
+                                              transition={{ delay: idx * 0.05 }}
+                                            >
+                                              <Link
+                                                to={nestedItem.path}
+                                                className="block px-4 py-2 text-gray-700 hover:text-blue-600 rounded-md hover:bg-blue-50 transition-all duration-200 my-1 border-l-2 border-transparent hover:border-blue-400"
+                                              >
+                                                {nestedItem.name}
+                                              </Link>
+                                            </motion.div>
+                                          )
+                                        )}
+                                      </div>
+                                    </motion.div>
+                                  )}
+                              </AnimatePresence>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+
+            <SearchModal
+              isOpen={isSearchOpen}
+              onClose={() => setIsSearchOpen(false)}
+            />
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsSearchOpen(true)}
+              className="text-[#005CB9] hover:text-blue-900 rounded-full hover:bg-blue-100 transition-colors duration-300 lg:pl-10"
+            >
+              <Search className="h-5 w-5" />
+            </motion.button>
+          </div>
+        </nav>
+      </div>
     </div>
-  </nav>
-</div>
-</div>
   );
 };
 

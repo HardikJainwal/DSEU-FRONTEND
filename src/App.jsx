@@ -8,7 +8,8 @@ import "./App.css";
 const HomeBody = lazy(() => import("./Component/Body/Banner"));
 const Announcements = lazy(() => import("./Component/Body/Announcements"));
 const Message = lazy(() => import("./Component/Body/Message"));
-const Card = lazy(() => import("./Component/Body/Card"));
+// const Card = lazy(() => import("./Component/Body/Card"));
+const InformationBulletin = lazy(() => import("./Component/Body/InformationBulletin"));
 const OurCampuses = lazy(() => import("./Component/Body/OurCampuses"));
 const OurPartners = lazy(() => import("./Component/Body/OurPartners"));
 const News = lazy(() => import("./Component/Body/News"));
@@ -36,13 +37,13 @@ const FacultyDesc = lazy(() => import("./Component/Body/FacultyDesc"));
 const Administration = lazy(() => import("./Component/Body/Administration"));
 
 // Policies
-const Policy = lazy(() => import("./Component/Policy/Policy"));
-const AcademicGuidelines = lazy(() => import("./Component/Policy/AcademicGuidelines"));
-const AdmissionsPolicy = lazy(() => import("./Component/Policy/AdmissionsPolicy"));
-const AntiRaggingPolicy = lazy(() => import("./Component/Policy/AntiRaggingPolicy"));
-const CodeOfConduct = lazy(() => import("./Component/Policy/CodeOfConduct"));
-const Facilities = lazy(() => import("./Component/Policy/Facilities"));
-const SupportServices = lazy(() => import("./Component/Policy/SupportServices"));
+// const Policy = lazy(() => import("./Component/Policy/Policy"));
+// const AcademicGuidelines = lazy(() => import("./Component/Policy/AcademicGuidelines"));
+// const AdmissionsPolicy = lazy(() => import("./Component/Policy/AdmissionsPolicy"));
+// const AntiRaggingPolicy = lazy(() => import("./Component/Policy/AntiRaggingPolicy"));
+// const CodeOfConduct = lazy(() => import("./Component/Policy/CodeOfConduct"));
+// const Facilities = lazy(() => import("./Component/Policy/Facilities"));
+// const SupportServices = lazy(() => import("./Component/Policy/SupportServices"));
 
 // Other Sections
 const About = lazy(() => import("./Component/NavItems/About"));
@@ -77,7 +78,7 @@ function App() {
                 <HomeBody />
                 <Announcements />
                 <Message />
-                <Card />
+                <InformationBulletin />
                 <OurCampuses />
                 <OurPartners />
                 <News />
@@ -109,7 +110,7 @@ function App() {
           <Route path="/Administration/administrative" element={<Administration />} />
 
           {/* Policies */}
-          <Route path="/about-us/Policy" element={<Policy />} />
+          {/* <Route path="/about-us/Policy" element={<Policy />} />
           {[
             { path: "academic-policy", component: AcademicGuidelines },
             { path: "admission-policy", component: AdmissionsPolicy },
@@ -119,7 +120,7 @@ function App() {
             { path: "code-of-conduct", component: CodeOfConduct },
           ].map(({ path, component }) => (
             <Route key={path} path={`/about-us/policy/${path}`} element={React.createElement(component)} />
-          ))}
+          ))} */}
 
           {/* Other Pages */}
           <Route path="/vice-chancellor" element={<ViceChancellorMessage />} />

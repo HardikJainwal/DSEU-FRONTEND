@@ -1,60 +1,8 @@
-import React from "react";
+import { informationBulletin as cards } from "../../constants/NOTICES.JS";
 
-const Card = () => {
-  /* Temporary data */
-  const cards = [
-    {
-      title: "Admissions 24-25",
-      content: [
-        "Students of State Universities of Delhi",
-        "Financial Assistance to the students Under EWS Scheme",
-        "ACM-USICT",
-        "USS Placement Coordinators",
-        "Alumni Portal",
-        "NCC Cadet Enrolment Drive",
-      ],
-      buttonText: "Apply Online",
-    },
-    {
-      title: "Students",
-      content: [
-        "Students of State Universities of Delhi",
-        "Financial Assistance to the students Under EWS Scheme",
-        "ACM-USICT",
-        "USS Placement Coordinators",
-        "Alumni Portal",
-        "NCC Cadet Enrolment Drive",
-      ],
-      buttonText: "Online Fee Services",
-    },
-    {
-      title: "Important Links",
-      content: [
-        "Students of State Universities of Delhi",
-        "Financial Assistance to the students Under EWS Scheme",
-        "ACM-USICT",
-        "USS Placement Coordinators",
-        "Alumni Portal",
-        "NCC Cadet Enrolment Drive",
-      ],
-      buttonText: "Online Portal",
-    },
-    {
-      title: "Alerts & Circulars",
-      content: [
-        "Students of State Universities of Delhi",
-        "Financial Assistance to the students Under EWS Scheme",
-        "ACM-USICT",
-        "USS Placement Coordinators",
-        "Alumni Portal",
-        "NCC Cadet Enrolment Drive",
-      ],
-      buttonText: "View Notices",
-    },
-  ];
-
+const InformationBulletin = () => {
   return (
-    <div className="container mx-auto px-4 py-4">
+    <div id="information-bulletin" className="container mx-auto px-4 py-4">
       <h2 className="text-4xl font-extrabold text-center text-blue-900 mb-8 mt-10 font-sans">
         Information Bulletin
         <div className="mt-2 mx-auto w-20 h-1 bg-blue-600 rounded"></div>
@@ -105,6 +53,7 @@ const Card = () => {
   );
 };
 
+// animation styling
 const style = `
   @keyframes scroll {
     0% {
@@ -155,6 +104,6 @@ const style = `
 export default () => (
   <>
     <style>{style}</style>
-    <Card />
+    <InformationBulletin />
   </>
 );
