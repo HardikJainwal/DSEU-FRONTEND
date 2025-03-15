@@ -14,18 +14,8 @@ const TopBar = () => {
         to="#"
         className="border-orange-500 border-l-2 px-1 md:px-4 hover:underline hover:text-[#1b1b1b] whitespace-nowrap text-sm md:text-[1rem]"
       >
-        Student Form
+        Admin Login
       </Link>
-
-      <Link
-        to="#"
-        className="border-orange-500 border-l-2 px-2 md:px-4 hover:underline hover:text-[#1b1b1b] whitespace-nowrap
-        text-sm md:text-[1rem]
-        "
-      >
-        Employee Form
-      </Link>
-
       <div
         className="relative group border-orange-500 border-l-2 border-r-2 px-1 md:px-4 hover:underline hover:text-[#1b1b1b] cursor-pointer whitespace-nowrap mr-2 md:mr-0"
         onMouseEnter={() => setOpenDropdown(true)}
@@ -56,6 +46,15 @@ const TopBar = () => {
           </div>
         )}
       </div>
+
+      <Link
+        to="#"
+        className="border-orange-500 border-r-2 px-2 md:px-4 hover:underline hover:text-[#1b1b1b] whitespace-nowrap
+        text-sm md:text-[1rem]
+        "
+      >
+        Student Login
+      </Link>
     </div>
   );
 };

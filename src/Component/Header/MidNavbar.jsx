@@ -39,7 +39,10 @@ const navItems = [
       { name: "Vision and Mission", path: "/about-us/Vision-and-Mission" },
       // { name: "Policy", path: "/about-us/Policy" },
       //? removed, as mentioned in the minutes of meeting pdf
-      { name: "University Calendar", path: "/about-us/University-Calendar" },
+
+      // { name: "University Calendar", path: "/about-us/University-Calendar" },
+      { name: "Academic Calendar", path: "/about-us/academic-Calendar" },
+      { name: "Holiday Calendar", path: "/about-us/holiday-Calendar" },
       {
         name: "Annual Report",
         path: "/about-us/Annual-Report",
@@ -118,9 +121,13 @@ const navItems = [
     name: "Alumni",
     path: "/alumni",
   },
+  // {
+  //   name: "Entrepreneurship",
+  //   path: "/entrepreneurship",
+  // },
   {
-    name: "Entrepreneurship",
-    path: "/entrepreneurship",
+    name: "ICC Guidelines",
+    path: "icc-guidelines",
   },
   {
     name: "Research",
